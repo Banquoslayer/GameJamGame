@@ -29,7 +29,6 @@ public class LazerAttack : MonoBehaviour
         if (other.gameObject.tag == "monster") {
             Debug.Log("HIT MNOSTER");
             other.gameObject.GetComponent<Enemy>().gotHit();
-            Destroy(this.gameObject);
         }
 
     }
