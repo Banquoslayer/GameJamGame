@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 public class Manager : MonoBehaviour
 {
@@ -10,9 +11,14 @@ public class Manager : MonoBehaviour
     public AudioClip[] Sounds;
     AudioSource speaker;
     int wave = 0, totalMonsterCounter = 0;
+    int score = 0;
     WaitForSeconds wait = new WaitForSeconds(3);
     public PlayerStuff player;
-    bool waveDone = false;
+    bool waveDone = true;
+
+    [SerializeField] GameObject character;
+    [SerializeField] GameObject characterModel;
+    [SerializeField] TextMeshProUGUI scoreText;
     void spawnMonster()
     {//spawns monster at random location in Spawnpoints
         int rand = Random.Range(0, Spawnpoints.transform.childCount - 1);
@@ -30,7 +36,9 @@ public class Manager : MonoBehaviour
         //play Sound effect "Gameover"
         speaker.PlayOneShot(Sounds[2]);
         //show score and wave #
+        ShowScoreFinal();
         //return to main menu
+        SceneTransition();
     }
     public void updateHealthUI() {
         //resets everything to off
@@ -66,6 +74,7 @@ public class Manager : MonoBehaviour
     }
     public void killedMonster() {
         totalMonsterCounter--;
+        score++;
         if (totalMonsterCounter <= 0)//if round is done, pause for a few seconds
         {
             waveDone = true;
@@ -87,9 +96,33 @@ public class Manager : MonoBehaviour
             //Debug.LogWarning("NO PLAYER REFERENCE");
         startNextWave();
     }
-
-    void Update()
+    
+    void ShowScore()
     {
+        scoreText.text = "" + score;
+    }
 
+    void ShowScoreFinal()
+    {
+        //UI Showing Final Score
+    }
+
+    void SceneTransition()
+    {
+        character.GetComponent<PlayerMovement>().enabled = false;
+        characterModel.GetComponent<CursorFollow>().enabled = false;
+        characterModel.GetComponent<PlayerStuff>().enabled = false;
+
+        Invoke("ChangeScene", 4f);
+    }
+
+    void ChangeScene()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    private void Update()
+    {
+        ShowScore();
     }
 }

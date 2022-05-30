@@ -4929,7 +4929,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 15
+  m_Speed: 20
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 100
@@ -4965,8 +4965,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.8755329, y: 3.5282695, z: 1.999999}
-  m_Center: {x: 0.03680682, y: 1.9204706, z: 0.18536091}
+  m_Size: {x: 4.5067077, y: 7.588168, z: 1.999999}
+  m_Center: {x: 0.04586212, y: 3.95042, z: 0.18536091}
 --- !u!1 &8470081678239778652
 GameObject:
   m_ObjectHideFlags: 0
